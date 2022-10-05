@@ -76,6 +76,57 @@ tests/unit/test_diffusion2d_functions.py:38: AssertionError
 FAILED tests/unit/test_diffusion2d_functions.py::test_set_initial_condition - assert array([[300.]]) =...
 ```
 
+Unittest errors
+
+```
+======================================================================
+FAIL: test_initialize_domain (tests.unit.test_diffusion2d_functions.TestDiffusion2D)
+Check function SolveDiffusion2D.initialize_domain
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/sinan-demir/git/us_rse102/diffusion2D-testing-exercise/tests/unit/test_diffusion2d_functions.py", line 17, in test_initialize_domain
+    self.assertAlmostEqual(self.solver.nx, 40., 2)
+AssertionError: 20 != 40.0 within 2 places (20.0 difference)
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+FAILED (failures=1)
+```
+
+```
+======================================================================
+FAIL: test_initialize_physical_parameters (tests.unit.test_diffusion2d_functions.TestDiffusion2D)
+Checks function SolveDiffusion2D.initialize_physical_parameters()
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/sinan-demir/git/us_rse102/diffusion2D-testing-exercise/tests/unit/test_diffusion2d_functions.py", line 27, in test_initialize_physical_parameters
+    self.assertAlmostEqual(self.solver.dt, 0.00048, 2)
+AssertionError: 0.012019230769230768 != 0.00048 within 2 places (0.011539230769230769 difference)
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+FAILED (failures=1)
+```
+
+```
+======================================================================
+ERROR: test_set_initial_condition (tests.unit.test_diffusion2d_functions.TestDiffusion2D)
+Checks function SolveDiffusion2D.get_initial_function
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/sinan-demir/git/us_rse102/diffusion2D-testing-exercise/tests/unit/test_diffusion2d_functions.py", line 39, in test_set_initial_condition
+    self.assertAlmostEqual(self.solver.set_initial_condition(), 130., 2)
+  File "/usr/lib/python3.8/unittest/case.py", line 957, in assertAlmostEqual
+    if round(diff, places) == 0:
+TypeError: type numpy.ndarray doesn't define __round__ method
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+FAILED (errors=1)
+```
 ### unittest log
 
 ## Citing
