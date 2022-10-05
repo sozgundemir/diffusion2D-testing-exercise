@@ -38,6 +38,13 @@ class SolveDiffusion2D:
         self.dt = None
 
     def initialize_domain(self, w=10., h=10., dx=0.1, dy=0.1):
+        assert type(w) == float, 'Input w should be float.'
+        assert type(h) == float, 'Input h should be float.'
+        assert type(dx) == float, 'Input dx should be float.'
+        assert type(dy) == float, 'Input dy should be float.'
+        assert dx <= w, 'Input dx should smaller than or equal to w.'
+        assert dy <= h, 'Input dy should smaller than or equal to h.'
+
         self.w = w
         self.h = h
         self.dx = dx
@@ -45,10 +52,16 @@ class SolveDiffusion2D:
         self.nx = int(w / dx)
         self.ny = int(h / dy)
 
-    def initialize_physical_parameters(self, d=4., T_cold=300, T_hot=700):
+    def initialize_physical_parameters(self, d=4., T_cold=300., T_hot=700.):
+        assert type(d) == float, 'Input d should be float.'
+        assert type(T_cold) == float, 'Input T_cold should be float.'
+        assert type(T_hot) == float, 'Input T_hot should be float.'
+        
         self.D = d
         self.T_cold = T_cold
         self.T_hot = T_hot
+
+        assert self.dx != None or self.dy != None, 'Domain parameters dx and dy has not been set.'
 
         # Computing a stable time step
         dx2, dy2 = self.dx * self.dx, self.dy * self.dy
